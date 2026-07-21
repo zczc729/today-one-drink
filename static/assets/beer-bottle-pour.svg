@@ -1,0 +1,83 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 160"
+  width="64"
+  height="160"
+  shape-rendering="crispEdges"
+>
+  <!-- Open stepped bottle lip. -->
+  <path
+    fill="#24130e"
+    fill-rule="evenodd"
+    d="
+      M20 4H44V8H46V14H42V18H22V16H18V8H20Z
+      M24 8V12H40V8Z
+    "
+  />
+  <rect x="22" y="14" width="20" height="6" fill="#4b281a" />
+  <rect x="24" y="16" width="16" height="4" fill="#6f3a1d" />
+  <rect x="24" y="8" width="4" height="2" fill="#c27a3b" />
+
+  <!-- Narrow neck with a dark right edge. -->
+  <path
+    fill="#24130e"
+    d="M22 20H42V46H46V50H50V56H14V50H18V46H22Z"
+  />
+  <rect x="26" y="20" width="12" height="28" fill="#6f351b" />
+  <rect x="26" y="22" width="3" height="18" fill="#9b5127" />
+  <rect x="38" y="20" width="4" height="28" fill="#3a2016" />
+  <rect x="28" y="25" width="2" height="9" fill="#c47c3a" />
+
+  <!-- Integrated shoulders and body. -->
+  <path
+    fill="#24130e"
+    d="
+      M14 50H50V54H54V62H56V140H54V148H50V152H14V150H10V146H8V138H8V62H10V56H14Z
+    "
+  />
+  <path
+    fill="#4b2517"
+    d="
+      M16 54H48V58H52V64H54V138H52V146H48V148H16V146H12V138H10V64H12V58H16Z
+    "
+  />
+  <path
+    fill="#71371b"
+    d="
+      M18 56H42V60H48V66H50V138H48V144H42V146H18V144H14V136H12V66H14V60H18Z
+    "
+  />
+  <path
+    fill="#8e4822"
+    d="M18 60H24V138H20V142H16V134H14V68H16V62H18Z"
+  />
+  <rect x="18" y="64" width="3" height="34" fill="#bc7135" />
+  <rect x="20" y="68" width="2" height="16" fill="#d08a46" />
+  <rect x="46" y="68" width="4" height="60" fill="#3a2016" />
+  <rect x="42" y="136" width="6" height="6" fill="#3b2117" />
+
+  <!-- Warm pixel label and compact house mark. -->
+  <path
+    fill="#35221b"
+    d="M16 82H48V120H46V124H18V122H16Z"
+  />
+  <path
+    fill="#d3ad70"
+    d="M18 84H46V118H44V121H20V119H18Z"
+  />
+  <rect x="20" y="87" width="24" height="3" fill="#b27c43" />
+  <rect x="20" y="115" width="24" height="3" fill="#9d6b3a" />
+  <path
+    fill="#4b2b20"
+    d="
+      M23 95H27V99H29V95H33V108H29V103H27V108H23Z
+      M35 95H41V99H39V108H35V104H37V99H35Z
+    "
+  />
+  <rect x="25" y="111" width="14" height="2" fill="#7f5131" />
+
+  <!-- Small bottom glass clusters. -->
+  <rect x="14" y="140" width="8" height="4" fill="#9a5027" />
+  <rect x="22" y="144" width="18" height="2" fill="#6b351d" />
+  <rect x="16" y="148" width="32" height="2" fill="#2d1912" />
+</svg>

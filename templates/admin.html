@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>관리자 · 오늘 한잔</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/static/admin.css?v=1">
+</head>
+<body>
+    <main class="admin-shell">
+        <section id="login-view" class="login-view" aria-labelledby="login-title">
+            <div class="login-card">
+                <p class="eyebrow">TODAY ONE DRINK</p>
+                <h1 id="login-title">관리자 로그인</h1>
+                <p class="login-description">서비스 운영 지표를 확인합니다.</p>
+                <form id="login-form" novalidate>
+                    <label for="username">아이디</label>
+                    <input id="username" name="username" autocomplete="username" required>
+                    <label for="password">비밀번호</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required>
+                    <button id="login-button" type="submit">로그인</button>
+                </form>
+                <p id="login-error" class="form-message" role="alert"></p>
+            </div>
+        </section>
+
+        <section id="dashboard-view" class="dashboard" hidden>
+            <header class="dashboard-header">
+                <div>
+                    <p class="eyebrow">SERVICE ANALYTICS</p>
+                    <h1>오늘 한잔 운영 대시보드</h1>
+                    <p id="timezone-note" class="timezone-note"></p>
+                </div>
+                <div class="header-actions">
+                    <label class="auto-refresh">
+                        <input id="auto-refresh" type="checkbox" checked>
+                        <span>자동 갱신</span>
+                    </label>
+                    <button id="refresh-button" class="button button--secondary" type="button">새로고침</button>
+                    <button id="logout-button" class="button button--ghost" type="button">로그아웃</button>
+                </div>
+            </header>
+
+            <div class="refresh-row">
+                <p id="last-updated">아직 갱신되지 않음</p>
+                <p id="dashboard-error" class="dashboard-error" role="alert"></p>
+            </div>
+
+            <section aria-labelledby="traffic-heading">
+                <div class="section-heading">
+                    <p class="section-kicker">TODAY</p>
+                    <h2 id="traffic-heading">오늘의 이용 흐름</h2>
+                </div>
+                <div class="metric-grid metric-grid--primary">
+                    <article class="metric-card"><span>오늘 방문자 수</span><strong data-value="today.visitors">—</strong></article>
+                    <article class="metric-card"><span>오늘 채팅 사용자 수</span><strong data-value="today.chat_users">—</strong></article>
+                    <article class="metric-card"><span>최근 5분 활성 사용자</span><strong data-value="today.active_users_5m">—</strong></article>
+                    <article class="metric-card"><span>오늘 총 채팅량</span><strong data-value="today.chat_messages">—</strong></article>
+                    <article class="metric-card"><span>오늘 성공 채팅량</span><strong data-value="today.successful_chats">—</strong></article>
+                    <article class="metric-card"><span>사용자당 평균 대화</span><strong data-value="today.average_messages_per_chat_user" data-suffix="건">—</strong></article>
+                    <article class="metric-card"><span>방문 → 채팅 전환율</span><strong data-value="today.visitor_to_chat_conversion_percent" data-suffix="%">—</strong></article>
+                </div>
+            </section>
+
+            <section class="quota-section" aria-labelledby="quota-heading">
+                <div class="section-heading">
+                    <p class="section-kicker">GEMINI QUOTA</p>
+                    <h2 id="quota-heading">Gemini 사용량</h2>
+                </div>
+                <div class="quota-layout">
+                    <div class="metric-grid">
+                        <article class="metric-card"><span>오늘 요청 시도</span><strong data-value="gemini_usage.today_attempts">—</strong></article>
+                        <article class="metric-card"><span>자체 일일 잔여량</span><strong data-value="gemini_usage.app_daily_remaining">—</strong></article>
+                        <article class="metric-card"><span>Gemini 예상 잔여량</span><strong data-value="gemini_usage.estimated_gemini_remaining">—</strong></article>
+                        <article class="metric-card"><span>최근 1분 요청량</span><strong data-value="gemini_usage.current_rpm">—</strong></article>
+                        <article class="metric-card"><span>현재 분당 잔여량</span><strong data-value="gemini_usage.app_rpm_remaining">—</strong></article>
+                    </div>
+                    <div class="progress-panel">
+                        <div class="progress-item">
+                            <div class="progress-label"><span>오늘 자체 한도 사용률</span><strong id="daily-progress-label">—</strong></div>
+                            <div class="progress-track"><div id="daily-progress" class="progress-value"></div></div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label"><span>최근 1분 요청 사용률</span><strong id="rpm-progress-label">—</strong></div>
+                            <div class="progress-track"><div id="rpm-progress" class="progress-value"></div></div>
+                        </div>
+                        <p class="quota-disclaimer">
+                            Gemini 예상 잔여량은 오늘 한잔 서버를 통해 발생한 요청 기준입니다.
+                            같은 Google 프로젝트의 AI Studio나 다른 서비스 호출은 반영되지 않습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-grid" aria-label="최근 7일 통계">
+                <article class="chart-card">
+                    <div class="chart-title"><div><p class="section-kicker">7 DAYS</p><h2>최근 7일 방문자 수</h2></div><span class="legend-dot legend-dot--visitor">방문자</span></div>
+                    <div id="visitor-chart" class="bar-chart"></div>
+                </article>
+                <article class="chart-card">
+                    <div class="chart-title"><div><p class="section-kicker">7 DAYS</p><h2>최근 7일 채팅량</h2></div><div class="legend"><span class="legend-dot legend-dot--message">메시지</span><span class="legend-dot legend-dot--success">성공</span></div></div>
+                    <div id="chat-chart" class="bar-chart bar-chart--grouped"></div>
+                </article>
+            </section>
+
+            <section class="operations" aria-labelledby="operations-heading">
+                <div class="section-heading"><p class="section-kicker">OPERATIONS</p><h2 id="operations-heading">제한·오류·성능</h2></div>
+                <div class="operations-grid">
+                    <article class="operations-card"><h3>요청 제한</h3><dl><div><dt>세션 한도 도달</dt><dd data-value="limits.session_limit_reached">—</dd></div><div><dt>사용자 분당 제한</dt><dd data-value="limits.user_rate_limited">—</dd></div><div><dt>전체 분당 제한</dt><dd data-value="limits.global_rate_limited">—</dd></div><div><dt>일일 한도 도달</dt><dd data-value="limits.daily_limit_reached">—</dd></div><div><dt>중복 요청 차단</dt><dd data-value="limits.duplicate_requests_blocked">—</dd></div></dl></article>
+                    <article class="operations-card"><h3>외부 서비스 오류</h3><dl><div><dt>Gemini 429</dt><dd data-value="errors.gemini_429">—</dd></div><div><dt>Gemini 503</dt><dd data-value="errors.gemini_503">—</dd></div><div><dt>기타 Gemini 오류</dt><dd data-value="errors.gemini_other">—</dd></div><div><dt>Redis 오류</dt><dd data-value="errors.redis_errors">—</dd></div></dl></article>
+                    <article class="operations-card"><h3>응답 성능</h3><dl><div><dt>평균 응답 시간</dt><dd data-value="performance.average_response_ms" data-suffix="ms">—</dd></div><div><dt>최근 응답 시간</dt><dd data-value="performance.latest_response_ms" data-suffix="ms">—</dd></div></dl></article>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="/static/admin.js?v=1"></script>
+</body>
+</html>

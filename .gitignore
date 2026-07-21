@@ -1,0 +1,100 @@
+# 가상환경
+today/
+.venv/
+venv/
+env/
+
+# 환경변수 / API 키
+.env
+.env.*
+.env.local
+.env.production
+!.env.example
+
+# Python 캐시
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 테스트 / 캐시
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE 설정
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# 로그
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+*.swp
+
+# 빌드 결과
+build/
+dist/
+*.egg-info/
+
+# Vercel 로컬 설정
+.vercel/
+
+# Environment secrets
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+!.env.example
+
+# Python virtual environments
+today/
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# macOS metadata
+.DS_Store
+__MACOSX/
+
+# Vercel local metadata
+.vercel/
+
+# Node dependencies
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Archives and backup files
+*.zip
+*.tar
+*.tar.gz
+*.bak
+*.backup
+*.orig
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Accidental copies
+* copy.js
+* copy.py

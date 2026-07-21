@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>오늘 한잔</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/static/style.css?v=13">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="scene">
+            <header class="scene-header">
+                <p class="scene-eyebrow">익명 혼술방</p>
+                <h1 class="scene-title">오늘 한잔</h1>
+                <p class="scene-description">퇴근 후, 친구랑 자취방에서 한 잔.</p>
+            </header>
+
+            <section
+                id="response-area"
+                class="response-stage"
+                aria-live="polite"
+                aria-atomic="true"
+            ></section>
+
+            <section class="beer-scene" aria-label="맥주잔">
+                <div id="refill-actor" class="refill-actor" aria-hidden="true">
+                    <div id="refill-bottle" class="refill-bottle">
+                        <img
+                            class="refill-bottle__image"
+                            src="/static/assets/beer-bottle-pour.svg?v=1"
+                            alt=""
+                            draggable="false"
+                        >
+                        <span
+                            id="refill-bottle-mouth"
+                            class="refill-bottle__mouth-anchor"
+                        ></span>
+                    </div>
+                </div>
+                <div
+                    id="beer-pour-stream"
+                    class="beer-pour-stream"
+                    aria-hidden="true"
+                ></div>
+
+                <div class="beer-motion-stage">
+                    <div
+                        id="mainBeerMug"
+                        class="main-beer-mug"
+                        role="button"
+                        tabindex="0"
+                        aria-label="맥주잔을 눌러 한 모금 마시기"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="100"
+                    >
+                        <div
+                            class="main-beer-mug__ground-shadow"
+                            aria-hidden="true"
+                        ></div>
+                        <div
+                            class="main-beer-mug__masked-content"
+                            aria-hidden="true"
+                        >
+                            <div class="main-beer-mug__liquid-track">
+                                <div class="main-beer-mug__liquid">
+                                    <div class="main-beer-mug__foam"></div>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:17%;--bubble-bottom:8%;--bubble-size:2px;--bubble-speed:2300ms;--bubble-delay:-400ms;--bubble-rise:-142px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:23%;--bubble-bottom:25%;--bubble-size:3px;--bubble-speed:2900ms;--bubble-delay:-2100ms;--bubble-rise:-184px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:29%;--bubble-bottom:4%;--bubble-size:2px;--bubble-speed:1850ms;--bubble-delay:-900ms;--bubble-rise:-126px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:35%;--bubble-bottom:17%;--bubble-size:3px;--bubble-speed:2550ms;--bubble-delay:-1750ms;--bubble-rise:-164px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:41%;--bubble-bottom:31%;--bubble-size:2px;--bubble-speed:3150ms;--bubble-delay:-2600ms;--bubble-rise:-198px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:47%;--bubble-bottom:10%;--bubble-size:4px;--bubble-speed:2700ms;--bubble-delay:-1200ms;--bubble-rise:-176px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:53%;--bubble-bottom:22%;--bubble-size:2px;--bubble-speed:2050ms;--bubble-delay:-650ms;--bubble-rise:-136px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:59%;--bubble-bottom:5%;--bubble-size:3px;--bubble-speed:3000ms;--bubble-delay:-2350ms;--bubble-rise:-190px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:65%;--bubble-bottom:28%;--bubble-size:2px;--bubble-speed:2200ms;--bubble-delay:-1450ms;--bubble-rise:-148px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:71%;--bubble-bottom:13%;--bubble-size:3px;--bubble-speed:2800ms;--bubble-delay:-300ms;--bubble-rise:-181px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:77%;--bubble-bottom:34%;--bubble-size:2px;--bubble-speed:1950ms;--bubble-delay:-1550ms;--bubble-rise:-132px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:82%;--bubble-bottom:7%;--bubble-size:4px;--bubble-speed:3200ms;--bubble-delay:-2800ms;--bubble-rise:-204px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:20%;--bubble-bottom:38%;--bubble-size:2px;--bubble-speed:2650ms;--bubble-delay:-1050ms;--bubble-rise:-171px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:38%;--bubble-bottom:2%;--bubble-size:3px;--bubble-speed:2400ms;--bubble-delay:-1950ms;--bubble-rise:-155px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:57%;--bubble-bottom:39%;--bubble-size:2px;--bubble-speed:3100ms;--bubble-delay:-750ms;--bubble-rise:-194px"></i>
+                                    <i class="main-beer-mug__bubble" style="--bubble-x:74%;--bubble-bottom:20%;--bubble-size:3px;--bubble-speed:2150ms;--bubble-delay:-1650ms;--bubble-rise:-144px"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <img
+                            class="main-beer-mug__glass-overlay main-beer-mug__glass-overlay--idle"
+                            src="/static/images/beer-glass-overlay.svg?v=3"
+                            alt=""
+                            draggable="false"
+                        >
+                        <img
+                            class="main-beer-mug__glass-overlay main-beer-mug__glass-overlay--drinking"
+                            alt=""
+                            draggable="false"
+                            hidden
+                        >
+                    </div>
+                </div>
+
+                <div
+                    id="table-impact"
+                    class="table-impact"
+                    aria-hidden="true"
+                ></div>
+
+                <p id="beer-status" class="beer-status">
+                    잔을 누르면 한 모금 마실 수 있어.
+                </p>
+            </section>
+
+            <p class="conversation-prompt">
+                오늘 하루 있었던 일, 다 털어놔봐.
+            </p>
+        </section>
+
+        <form id="chat-form" class="chat-form">
+            <label for="message-input" class="sr-only">
+                오늘 있었던 일
+            </label>
+
+            <textarea
+                id="message-input"
+                class="message-input"
+                rows="1"
+                maxlength="1000"
+                placeholder="지금 이 순간, 무슨 생각이 들어?"
+                required
+            ></textarea>
+
+            <button
+                type="submit"
+                class="submit-button"
+                aria-label="메시지 보내기"
+                title="보내기"
+            >
+                <span class="submit-button__icon" aria-hidden="true">↑</span>
+            </button>
+        </form>
+        <p
+            id="request-status"
+            class="request-status"
+            aria-live="polite"
+        ></p>
+    </main>
+
+    <div
+        id="entry-guide"
+        class="entry-guide"
+        hidden
+    >
+        <section
+            class="entry-guide__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="entry-guide-title"
+            aria-describedby="entry-guide-description"
+            tabindex="-1"
+        >
+            <button
+                id="entry-guide-close"
+                class="entry-guide__close"
+                type="button"
+                aria-label="안내 닫기"
+            >
+                <span aria-hidden="true">X</span>
+            </button>
+
+            <h2
+                id="entry-guide-title"
+                class="entry-guide__title"
+            >
+                🍺 오늘 한 잔이란?
+            </h2>
+
+            <div
+                id="entry-guide-description"
+                class="entry-guide__description"
+            >
+                <p>퇴근 후 혼자 보내는 시간을 위한 AI 기반 익명 대화 서비스입니다.</p>
+                <p>맥주를 마시는 동안 고민, 푸념, 오늘 있었던 일을 이야기하면 AI가 친구처럼 공감하고 답변합니다.</p>
+                <h4>사용 방법</h4>
+                <p>1. 잔을 길게 눌러 맥주 마시기</p>
+                <p>2. 이야기를 입력하기</p>
+                <p>3. AI 친구와 대화하기</p>
+                <h4>사용 모델</h4>
+                <p>Google Gemini 3.1 Flash-Lite</p>
+                <p>무료 AI 사용량 제한으로 일일 이용량이 제한될 수 있습니다.</p>
+            </div>
+
+            <div class="entry-guide__actions">
+                <button
+                    id="entry-guide-hide-today"
+                    class="entry-guide__button entry-guide__button--secondary"
+                    type="button"
+                >
+                    오늘 하루 보지 않기
+                </button>
+                <button
+                    id="entry-guide-start"
+                    class="entry-guide__button entry-guide__button--primary"
+                    type="button"
+                >
+                    시작하기
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="/static/beer-level.js?v=7"></script>
+    <script src="/static/app.js?v=13"></script>
+</body>
+</html>

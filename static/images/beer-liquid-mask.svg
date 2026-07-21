@@ -1,0 +1,18 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 256 320"
+  width="256"
+  height="320"
+  shape-rendering="crispEdges"
+>
+  <!--
+    Alpha mask for browser CSS masking. The transparent exterior keeps
+    Safari and other WebKit browsers independent of luminance-mask support.
+  -->
+  <path
+    fill="#ffffff"
+    d="
+      M48 30H64V27H82V30H96V28H114V31H128V29H146V32H158V35H166V40H168V48H170V224H168V240H166V248H162V254H154V258H36V256H28V252H24V246H20V238H18V58H20V48H24V42H32V36H40V32H48Z
+    "
+  />
+</svg>

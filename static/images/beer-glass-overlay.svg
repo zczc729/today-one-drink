@@ -1,0 +1,142 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 256 320"
+  width="256"
+  height="320"
+  shape-rendering="crispEdges"
+>
+  <style>
+  </style>
+
+  <!--
+    Rebuilt from the silhouette of references/beer-mug-shape.png.
+    Dark handle is painted first so both joins sit naturally behind the body.
+  -->
+  <path
+    fill="#24130e"
+    fill-rule="evenodd"
+    d="
+      M170 72H184V76H212V78H220V82H226V86H232V92H236V100H240V110H242V124H244V186H242V200H238V210H234V218H230V224H226V230H220V236H212V240H204V244H194V246H184V248H176V220H188V218H200V214H210V208H220V198H228V184H232V168H234V134H232V118H228V106H222V98H214V92H204V88H192V86H170Z
+      M178 98V108H196V110H206V114H214V122H218V136H220V176H218V188H214V198H208V204H200V210H190V212H178V224H188V222H202V218H212V210H220V202H226V192H230V178H232V132H230V118H226V110H220V104H212V100H202V98Z
+    "
+  />
+  <path
+    fill="#5a5048"
+    fill-rule="evenodd"
+    d="
+      M172 76H184V80H210V82H218V86H224V90H230V96H234V104H238V114H240V128H242V182H240V196H236V206H232V214H228V220H224V226H218V232H210V236H202V240H192V242H182V244H176V216H188V214H198V210H208V204H216V194H224V182H228V166H230V136H228V120H224V110H218V102H210V96H200V92H190V90H172Z
+      M178 98V108H196V110H206V114H214V122H218V136H220V176H218V188H214V198H208V204H200V210H190V212H178V224H188V222H202V218H212V210H220V202H226V192H230V178H232V132H230V118H226V110H220V104H212V100H202V98Z
+    "
+  />
+  <path
+    fill="#786b5f"
+    d="M174 80H196V82H208V86H216V90H224V96H212V92H202V88H190V86H174Z"
+  />
+  <rect x="178" y="84" width="18" height="2" fill="#a88a70" />
+  <rect x="236" y="116" width="2" height="24" fill="#817369" />
+  <rect x="230" y="190" width="2" height="10" fill="#40312a" />
+  <path
+    fill="#3b302a"
+    d="M176 216H188V214H198V210H208V204H216V208H210V214H200V218H188V220H176Z"
+  />
+
+  <!-- Shared body interior, kept transparent except for a 5% warm tint. -->
+  <path
+    fill="#98725c"
+    fill-opacity="0.05"
+    d="
+      M24 44H164V48H168V58H170V224H168V240H166V248H162V254H154V258H36V256H28V252H24V246H20V238H18V58H20V48H24Z
+    "
+  />
+
+  <!-- Mostly vertical walls with the reference's slight lower taper. -->
+  <path
+    fill="#24130e"
+    d="
+      M6 40H22V58H20V224H22V240H24V248H28V254H34V258H40V262H30V262H22V260H16V256H12V250H10V242H8V226H6Z
+    "
+  />
+  <path
+    fill="#3d271f"
+    d="
+      M12 44H20V60H18V222H20V236H22V244H26V250H32V254H28V252H24V248H20V242H16V234H14V220H12Z
+    "
+  />
+  <path
+    fill="#24130e"
+    d="
+      M164 40H178V226H176V242H174V250H172V256H168V260H160V262H150V262H156V258H162V254H166V248H168V240H170V224H172V58H170V48H164Z
+    "
+  />
+  <path
+    fill="#3a241d"
+    d="
+      M166 44H174V222H172V236H170V244H166V250H162V254H156V256H152V254H158V250H162V244H166V236H168V220H166Z
+    "
+  />
+
+  <!-- Small upper-left reflection clusters; no continuous bright outline. -->
+  <rect x="12" y="48" width="2" height="32" fill="#c48755" />
+  <rect x="14" y="50" width="2" height="14" fill="#9b745b" />
+  <rect x="16" y="84" width="2" height="18" fill="#765442" />
+  <rect x="20" y="58" width="2" height="10" fill="#d09a68" />
+  <rect x="166" y="64" width="2" height="18" fill="#654637" />
+  <rect x="168" y="184" width="2" height="14" fill="#4b3026" />
+
+  <!-- Low stepped ellipse: the center sits five pixels below both ends. -->
+  <path
+    fill="#24130e"
+    fill-rule="evenodd"
+    d="
+      M14 34H26V35H40V36H56V38H134V36H150V35H164V34H172V36H176V39H172V42H164V44H24V43H16V41H10V38H8V36H14Z
+      M18 37V39H14V40H18V41H28V42H156V41H166V40H172V39H168V37H158V38H144V39H46V38H30V37Z
+    "
+  />
+  <path
+    fill="#635146"
+    d="
+      M14 35H26V36H40V37H56V39H134V37H150V36H164V35H170V37H164V38H152V39H42V38H26V37H14Z
+    "
+  />
+  <path
+    fill="#756053"
+    d="M16 40H28V41H156V40H168V39H172V41H166V43H156V45H28V44H18V43H12V41H16Z"
+  />
+  <rect x="24" y="36" width="40" height="1" fill="#c58a58" />
+  <rect x="66" y="37" width="24" height="1" fill="#9b7c65" />
+  <rect x="16" y="39" width="2" height="2" fill="#d09a67" />
+  <rect x="28" y="43" width="36" height="1" fill="#9b755d" />
+
+  <!-- Lower, narrower integrated base with a translucent center. -->
+  <path
+    fill="#2b1914"
+    fill-rule="evenodd"
+    d="
+      M18 258H166V260H172V264H174V274H172V278H168V282H160V284H148V286H38V284H28V282H22V278H18V274H16V262H18Z
+      M24 259V264H22V274H26V278H34V280H154V278H162V274H166V259Z
+    "
+  />
+  <path
+    fill="#8b7665"
+    fill-opacity="0.22"
+    d="M24 259H166V274H162V278H154V280H34V278H26V274H22V264H24Z"
+  />
+  <path
+    fill="#8b7665"
+    fill-opacity="0.14"
+    d="M30 256H154V258H164V262H24V260H28V258H30Z"
+  />
+  <path
+    fill="#6d5d50"
+    fill-opacity="0.68"
+    d="M24 260H166V262H170V266H168V264H162V263H28V264H22V266H20V263H24Z"
+  />
+  <path
+    fill="#49382f"
+    d="M24 276H30V280H38V282H152V280H160V276H168V278H164V282H156V284H34V282H28V280H24Z"
+  />
+  <rect x="30" y="262" width="34" height="1" fill="#b48763" />
+  <rect x="66" y="262" width="22" height="1" fill="#8e7765" />
+  <rect x="28" y="266" width="2" height="6" fill="#967863" />
+  <rect x="48" y="282" width="38" height="1" fill="#9a806b" />
+</svg>
