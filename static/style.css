@@ -30,6 +30,8 @@
     --scene-height: 100dvh;
     --glass-size: clamp(220px, min(76vw, 34dvh), 340px);
     --glass-bottom: clamp(142px, 17dvh, 184px);
+    --refill-enter-x: clamp(120px, 16vw, 180px);
+    --refill-enter-y: -70px;
     --main-beer-mug-mask:
         url("/static/images/beer-liquid-mask.svg?v=3");
 }
@@ -901,8 +903,8 @@ textarea {
     pointer-events: none;
     transform:
         translate(
-            clamp(120px, 16vw, 180px),
-            -70px
+            var(--refill-enter-x),
+            var(--refill-enter-y)
         );
     transition:
         opacity 100ms steps(2, end),
@@ -964,8 +966,8 @@ textarea {
     visibility: visible;
     transform:
         translate(
-            clamp(120px, 16vw, 180px),
-            -70px
+            var(--refill-enter-x),
+            var(--refill-enter-y)
         );
     transition:
         opacity 120ms steps(3, end),
@@ -1265,18 +1267,30 @@ textarea {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     :root {
-        --glass-size: min(64vw, 36dvh, 294px);
-        --glass-bottom: max(132px, 17dvh);
+        --glass-size: clamp(218px, min(64vw, 32dvh), 286px);
+        --glass-bottom: clamp(156px, 24dvh, 214px);
         --input-height: 50px;
         --input-bottom: max(10px, env(safe-area-inset-bottom));
         --chat-form-height: calc(var(--input-height) + 14px);
         --request-status-gap: 18px;
+        --refill-enter-x: clamp(74px, 18vw, 116px);
+        --refill-enter-y: -52px;
     }
 
     body {
-        background-position: 50% center;
+        background-color: #1a0f09;
+        background-image: url("/static/assets/mobile_background.png?v=1");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .app-shell,
+    .scene {
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .scene-header {
@@ -1298,7 +1312,7 @@ textarea {
     }
 
     .response-stage {
-        top: clamp(105px, 17dvh, 132px);
+        top: clamp(100px, 15dvh, 130px);
         width: calc(100vw - 20px);
         height: 118px;
         padding-top: 8px;
@@ -1322,6 +1336,10 @@ textarea {
     .table-impact {
         bottom: calc(var(--glass-bottom) - 4px);
         width: min(34vw, 140px);
+    }
+
+    .beer-motion-stage {
+        width: min(var(--glass-size), calc(100vw - 40px));
     }
 
     .main-beer-mug__bubble:nth-of-type(n + 13) {
@@ -1372,6 +1390,22 @@ textarea {
     }
 }
 
+@media (max-width: 390px) {
+    :root {
+        --glass-size: clamp(214px, min(62vw, 32dvh), 244px);
+        --glass-bottom: clamp(150px, 23dvh, 190px);
+        --refill-enter-x: 72px;
+    }
+}
+
+@media (max-width: 768px) and (max-height: 700px) {
+    :root {
+        --glass-size: clamp(210px, min(60vw, 32dvh), 232px);
+        --glass-bottom: clamp(142px, 22dvh, 170px);
+        --refill-enter-y: -44px;
+    }
+}
+
 @media (orientation: landscape) and (max-height: 560px) {
     :root {
         --glass-size: min(46vh, 290px);
@@ -1418,6 +1452,26 @@ textarea {
         --beer-near-scale: 1.1;
         --beer-gulp-y: -44px;
         --beer-gulp-scale: 1.112;
+    }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+    :root {
+        --glass-size: clamp(160px, 40dvh, 214px);
+        --glass-bottom: clamp(82px, 21dvh, 112px);
+        --refill-enter-x: clamp(64px, 13vw, 102px);
+        --refill-enter-y: -38px;
+    }
+
+    body {
+        background-image: url("/static/assets/mobile_background.png?v=1");
+        background-position: center 55%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .beer-motion-stage {
+        width: min(var(--glass-size), calc(100vw - 40px));
     }
 }
 

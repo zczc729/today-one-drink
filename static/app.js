@@ -1877,9 +1877,11 @@ function setPourState(nextState) {
 
 function getRefillBottleHeightRatio() {
     const currentRatio = window.matchMedia(
-        "(max-width: 700px)"
+        "(max-width: 768px), " +
+            "(max-width: 900px) and " +
+            "(orientation: landscape)"
     ).matches
-        ? 1.45
+        ? 1.32
         : 1.55;
 
     return currentRatio *
