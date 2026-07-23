@@ -4,6 +4,10 @@ const responseArea = document.querySelector("#response-area");
 const submitButton = chatForm?.querySelector("button");
 const requestStatus = document.querySelector("#request-status");
 const appShell = document.querySelector(".app-shell");
+const rootElement = document.documentElement;
+const beerMotionStage = document.querySelector(
+    ".beer-motion-stage"
+);
 const entryGuide = document.querySelector("#entry-guide");
 const entryGuideDialog = entryGuide?.querySelector(
     ".entry-guide__dialog"
@@ -225,6 +229,171 @@ let cooldownUntil = 0;
 let permanentlyDisabled = false;
 let bubbleDismissTimerId = null;
 let gulpAudioContext = null;
+const viewportState = {
+    keyboardSceneFrozen: false,
+};
+const mobileInputQuery = window.matchMedia(
+    "(hover: none) and (pointer: coarse)"
+);
+
+
+function syncChatFormHeight() {
+    if (!chatForm || !rootElement) {
+        return;
+    }
+
+    rootElement.style.setProperty(
+        "--chat-form-height",
+        `${chatForm.offsetHeight}px`
+    );
+}
+
+
+function resizeMessageInput() {
+    if (!messageInput) {
+        return;
+    }
+
+    const inputStyles = getComputedStyle(messageInput);
+    const minimumHeight = Number.parseFloat(
+        inputStyles.minHeight
+    );
+    const maximumHeight = Number.parseFloat(
+        inputStyles.maxHeight
+    );
+
+    messageInput.style.height = "auto";
+
+    const nextHeight = Math.min(
+        Math.max(messageInput.scrollHeight, minimumHeight),
+        maximumHeight
+    );
+
+    messageInput.style.height = `${nextHeight}px`;
+    messageInput.style.overflowY =
+        messageInput.scrollHeight > maximumHeight
+            ? "auto"
+            : "hidden";
+    syncChatFormHeight();
+}
+
+
+function freezeSceneForKeyboard() {
+    if (
+        viewportState.keyboardSceneFrozen ||
+        !rootElement ||
+        !responseArea ||
+        !beerMotionStage ||
+        !beerStatus
+    ) {
+        return;
+    }
+
+    const motionStyles = getComputedStyle(beerMotionStage);
+    const statusStyles = getComputedStyle(beerStatus);
+
+    if (appShell) {
+        rootElement.style.setProperty(
+            "--scene-height",
+            `${appShell.offsetHeight}px`
+        );
+    }
+    rootElement.style.setProperty(
+        "--keyboard-response-top",
+        `${responseArea.offsetTop}px`
+    );
+    rootElement.style.setProperty(
+        "--keyboard-response-height",
+        `${responseArea.offsetHeight}px`
+    );
+    rootElement.style.setProperty(
+        "--keyboard-glass-size",
+        `${beerMotionStage.offsetWidth}px`
+    );
+    rootElement.style.setProperty(
+        "--keyboard-glass-bottom",
+        motionStyles.bottom
+    );
+    rootElement.style.setProperty(
+        "--keyboard-status-bottom",
+        statusStyles.bottom
+    );
+    rootElement.classList.add("is-keyboard-open");
+    viewportState.keyboardSceneFrozen = true;
+}
+
+
+function restoreSceneAfterKeyboard() {
+    if (!rootElement) {
+        return;
+    }
+
+    rootElement.classList.remove("is-keyboard-open");
+    rootElement.style.removeProperty("--scene-height");
+    rootElement.style.removeProperty("--keyboard-offset");
+    rootElement.style.removeProperty("--keyboard-response-top");
+    rootElement.style.removeProperty("--keyboard-response-height");
+    rootElement.style.removeProperty("--keyboard-glass-size");
+    rootElement.style.removeProperty("--keyboard-glass-bottom");
+    rootElement.style.removeProperty("--keyboard-status-bottom");
+    viewportState.keyboardSceneFrozen = false;
+}
+
+
+function syncKeyboardViewport() {
+    if (
+        !messageInput ||
+        !mobileInputQuery.matches ||
+        document.activeElement !== messageInput ||
+        !window.visualViewport
+    ) {
+        return;
+    }
+
+    const visualViewport = window.visualViewport;
+    const keyboardOffset = Math.max(
+        0,
+        Math.round(
+            window.innerHeight -
+                visualViewport.height -
+                visualViewport.offsetTop
+        )
+    );
+
+    rootElement.style.setProperty(
+        "--keyboard-offset",
+        `${keyboardOffset}px`
+    );
+}
+
+
+messageInput?.addEventListener("input", () => {
+    if (mobileInputQuery.matches) {
+        resizeMessageInput();
+    }
+});
+messageInput?.addEventListener("focus", () => {
+    if (!mobileInputQuery.matches) {
+        return;
+    }
+
+    freezeSceneForKeyboard();
+    syncKeyboardViewport();
+});
+messageInput?.addEventListener("blur", restoreSceneAfterKeyboard);
+window.visualViewport?.addEventListener(
+    "resize",
+    syncKeyboardViewport,
+    { passive: true }
+);
+window.visualViewport?.addEventListener(
+    "scroll",
+    syncKeyboardViewport,
+    { passive: true }
+);
+if (mobileInputQuery.matches) {
+    resizeMessageInput();
+}
 
 
 function getLocalDateKey(date = new Date()) {
@@ -2932,6 +3101,9 @@ chatForm.addEventListener(
 
             chatHistory = saveHistory(chatHistory);
             messageInput.value = "";
+            if (mobileInputQuery.matches) {
+                resizeMessageInput();
+            }
             startCooldown(NORMAL_COOLDOWN_SECONDS);
         } catch (error) {
             console.error(error);

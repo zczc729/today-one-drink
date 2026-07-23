@@ -24,6 +24,10 @@
     --beer-lowering-duration: 285ms;
     --input-height: 54px;
     --input-bottom: max(14px, env(safe-area-inset-bottom));
+    --keyboard-offset: 0px;
+    --chat-form-height: calc(var(--input-height) + 16px);
+    --request-status-gap: 16px;
+    --scene-height: 100dvh;
     --glass-size: clamp(220px, min(76vw, 34dvh), 340px);
     --glass-bottom: clamp(142px, 17dvh, 184px);
     --main-beer-mug-mask:
@@ -68,7 +72,7 @@ textarea {
     position: relative;
     width: 100%;
     height: 100vh;
-    height: 100dvh;
+    height: var(--scene-height);
     min-height: 0;
     overflow: visible;
 }
@@ -254,6 +258,20 @@ textarea {
 .scene-bubble.is-leaving {
     opacity: 0;
     transform: translateY(-8px);
+}
+
+:root.is-keyboard-open .response-stage {
+    top: var(--keyboard-response-top);
+    height: var(--keyboard-response-height);
+}
+
+:root.is-keyboard-open .beer-motion-stage {
+    width: var(--keyboard-glass-size);
+    bottom: var(--keyboard-glass-bottom);
+}
+
+:root.is-keyboard-open .beer-status {
+    bottom: var(--keyboard-status-bottom);
 }
 
 .ai-bubble {
@@ -748,7 +766,7 @@ textarea {
 .chat-form {
     position: fixed;
     z-index: 80;
-    bottom: var(--input-bottom);
+    bottom: calc(var(--input-bottom) + var(--keyboard-offset));
     left: 50%;
     width: min(clamp(700px, 56vw, 850px), calc(100vw - 32px));
     min-width: 0;
@@ -771,7 +789,8 @@ textarea {
     position: fixed;
     z-index: 81;
     bottom: calc(
-        var(--input-bottom) + var(--input-height) + 32px
+        var(--input-bottom) + var(--keyboard-offset) +
+            var(--chat-form-height) + var(--request-status-gap)
     );
     left: 50%;
     width: min(700px, calc(100vw - 32px));
@@ -811,6 +830,8 @@ textarea {
 
 .message-input::placeholder {
     color: rgba(218, 190, 154, 0.58);
+    font-size: inherit;
+    opacity: 1;
 }
 
 .message-input:focus {
@@ -1250,6 +1271,8 @@ textarea {
         --glass-bottom: max(132px, 17dvh);
         --input-height: 50px;
         --input-bottom: max(10px, env(safe-area-inset-bottom));
+        --chat-form-height: calc(var(--input-height) + 14px);
+        --request-status-gap: 18px;
     }
 
     body {
@@ -1312,7 +1335,6 @@ textarea {
 
     .message-input {
         padding: 12px 10px;
-        font-size: 0.72rem;
     }
 
     .main-beer-mug {
@@ -1355,7 +1377,7 @@ textarea {
         --glass-size: min(46vh, 290px);
         --glass-size: min(46dvh, 290px);
         --glass-bottom: 76px;
-        --input-height: 44px;
+        --input-height: 48px;
     }
 
     .scene-header {
@@ -1396,6 +1418,13 @@ textarea {
         --beer-near-scale: 1.1;
         --beer-gulp-y: -44px;
         --beer-gulp-scale: 1.112;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .message-input {
+        font-size: 16px;
+        line-height: 1.4;
     }
 }
 
