@@ -32,6 +32,6 @@ def test_mobile_layout_uses_independent_glass_and_bottle_variables():
     ]:
         assert variable in stylesheet
 
-    assert "--glass-bottom: clamp(145px, 21.675dvh, 192px);" in stylesheet
+    assert "--glass-bottom: clamp(123.25px, 18.42375dvh, 163.2px);" in stylesheet
     assert '"(max-width: 768px), "' in app_script
     assert "? 1.10" in app_script
