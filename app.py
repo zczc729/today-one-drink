@@ -10,6 +10,12 @@ from routes.session import router as session_router
 
 
 BASE_DIR = Path(__file__).resolve().parent
+VERSIONED_STATIC_EXTENSIONS = frozenset({".css", ".js"})
+HTML_CACHE_CONTROL = "no-cache, max-age=0, must-revalidate"
+VERSIONED_STATIC_CACHE_CONTROL = (
+    "public, max-age=31536000, immutable"
+)
+STATIC_ERROR_CACHE_CONTROL = "no-store"
 
 app = FastAPI(
     title="오늘 한잔 API",
@@ -32,14 +38,31 @@ app.include_router(admin_router)
 
 
 @app.middleware("http")
-async def protect_admin_cache(request: Request, call_next):
+async def set_cache_headers(request: Request, call_next):
     response = await call_next(request)
-    if (
-        request.url.path == "/admin"
-        or request.url.path.startswith("/api/admin/")
-    ):
+    path = request.url.path
+
+    if path == "/admin" or path.startswith("/api/admin/"):
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Robots-Tag"] = "noindex, nofollow"
+    elif path == "/":
+        response.headers["Cache-Control"] = HTML_CACHE_CONTROL
+    elif path.startswith("/static/"):
+        extension = Path(path).suffix.lower()
+        is_versioned_asset = request.query_params.get("v")
+
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        if response.status_code != 200:
+            response.headers["Cache-Control"] = STATIC_ERROR_CACHE_CONTROL
+        elif (
+            extension in VERSIONED_STATIC_EXTENSIONS
+            and is_versioned_asset
+        ):
+            response.headers["Cache-Control"] = (
+                VERSIONED_STATIC_CACHE_CONTROL
+            )
+        else:
+            response.headers["Cache-Control"] = HTML_CACHE_CONTROL
     return response
 
 
