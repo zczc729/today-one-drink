@@ -9,9 +9,9 @@ def test_beer_level_math_script_loads_before_app_with_same_version():
         encoding="utf-8"
     )
     beer_script = (
-        '<script src="/static/beer-level.js?v=16" defer></script>'
+        '<script src="/static/beer-level.js?v=17" defer></script>'
     )
-    app_script = '<script src="/static/app.js?v=16" defer></script>'
+    app_script = '<script src="/static/app.js?v=17" defer></script>'
 
     assert beer_script in index_html
     assert app_script in index_html

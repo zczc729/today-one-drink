@@ -1881,7 +1881,7 @@ function getRefillBottleHeightRatio() {
             "(max-width: 900px) and " +
             "(orientation: landscape)"
     ).matches
-        ? 1.32
+        ? 1.10
         : 1.55;
 
     return currentRatio *
