@@ -436,7 +436,7 @@ assertIncludes(
 );
 assertIncludes(
     templateSource,
-    'href="/static/style.css?v=20"',
+    'href="/static/style.css?v=21"',
     "entry guide CSS cache key must be updated"
 );
 assertIncludes(
