@@ -13,7 +13,7 @@ def test_home_is_revalidated_on_each_visit():
 
 
 def test_versioned_static_assets_are_cached_by_their_version():
-    response = TestClient(app).get("/static/style.css?v=17")
+    response = TestClient(app).get("/static/style.css?v=18")
 
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/css")
@@ -24,7 +24,7 @@ def test_versioned_static_assets_are_cached_by_their_version():
 
 
 def test_missing_static_asset_is_not_cached():
-    response = TestClient(app).get("/static/missing.css?v=17")
+    response = TestClient(app).get("/static/missing.css?v=18")
 
     assert response.status_code == 404
     assert response.headers["cache-control"] == "no-store"
