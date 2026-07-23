@@ -1270,7 +1270,7 @@ textarea {
 @media (max-width: 768px) {
     :root {
         --glass-size: clamp(208px, min(60vw, 31dvh), 266px);
-        --glass-bottom: clamp(180px, 26.5dvh, 236px);
+        --glass-bottom: clamp(204px, 29dvh, 258px);
         --input-height: 50px;
         --input-bottom: max(10px, env(safe-area-inset-bottom));
         --chat-form-height: calc(var(--input-height) + 14px);
@@ -1393,7 +1393,7 @@ textarea {
 @media (max-width: 390px) {
     :root {
         --glass-size: clamp(204px, min(59vw, 31dvh), 230px);
-        --glass-bottom: clamp(172px, 25.5dvh, 212px);
+        --glass-bottom: clamp(194px, 28dvh, 232px);
         --refill-enter-x: 72px;
     }
 }
@@ -1401,7 +1401,7 @@ textarea {
 @media (max-width: 768px) and (max-height: 700px) {
     :root {
         --glass-size: clamp(198px, min(58vw, 30dvh), 220px);
-        --glass-bottom: clamp(164px, 24.5dvh, 190px);
+        --glass-bottom: clamp(184px, 26.5dvh, 208px);
         --refill-enter-y: -44px;
     }
 }
