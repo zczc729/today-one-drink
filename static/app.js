@@ -74,6 +74,52 @@ const BOTTLE_MOUTH_ANCHOR = Object.freeze({
 
 const BEER_IDLE_FRAME_MS = 350;
 const KEYBOARD_POINTER_ID = "keyboard";
+const beerLevelMath = window.BeerLevelMath;
+const REQUIRED_BEER_LEVEL_MATH_MEMBERS = Object.freeze({
+    TOTAL_DRINK_MS: "number",
+    clampConsumedMs: "function",
+    getVisualLevel: "function",
+    getLogicalLevel: "function",
+    getConsumedMsForLevel: "function",
+    getConsumedMsAt: "function",
+    BEER_MOTION_DURATIONS: "object",
+    getHeldMotionState: "function",
+    shouldShowDrinkingOverlay: "function",
+    FULL_POUR_DURATION: "number",
+    getAutoPourLevel: "function",
+    canStartAutoPour: "function",
+    getPourStreamGeometry: "function",
+    getRefillBottleLayout: "function",
+});
+
+if (
+    !beerLevelMath ||
+    typeof beerLevelMath !== "object"
+) {
+    console.error(
+        "[오늘 한잔] BeerLevelMath를 찾을 수 없습니다. " +
+            "beer-level.js가 app.js보다 먼저 로드되었는지 확인하세요."
+    );
+    throw new Error("BeerLevelMath 초기화에 실패했습니다.");
+}
+
+const missingBeerLevelMathMembers =
+    Object.entries(REQUIRED_BEER_LEVEL_MATH_MEMBERS).filter(
+        ([member, memberType]) => (
+            typeof beerLevelMath[member] !== memberType
+        )
+    );
+
+if (missingBeerLevelMathMembers.length > 0) {
+    console.error(
+        "[오늘 한잔] BeerLevelMath API가 불완전합니다:",
+        missingBeerLevelMathMembers.map(
+            ([member]) => member
+        )
+    );
+    throw new Error("BeerLevelMath API 검증에 실패했습니다.");
+}
+
 const {
     TOTAL_DRINK_MS,
     clampConsumedMs,
@@ -89,7 +135,7 @@ const {
     canStartAutoPour,
     getPourStreamGeometry,
     getRefillBottleLayout,
-} = window.BeerLevelMath;
+} = beerLevelMath;
 const BEER_DRINKING_OVERLAY_URL =
     "/static/assets/beer-glass-drinking.svg";
 const BEER_MOTION_CLASS_NAMES = Object.freeze([
